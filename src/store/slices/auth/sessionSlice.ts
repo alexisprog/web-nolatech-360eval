@@ -1,37 +1,35 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { SLICE_BASE_NAME } from './constants'
+import { SignInCredential, SignInResponse } from '@/@types/auth'
 
 export interface SessionState {
   signedIn: boolean
   token: string | null
-  refreshToken: string | null
 }
 
 const initialState: SessionState = {
   signedIn: false,
   token: null,
-  refreshToken: null,
 }
 
 const sessionSlice = createSlice({
   name: `${SLICE_BASE_NAME}/session`,
   initialState,
   reducers: {
-    signInSuccess(
-      state,
-      action: PayloadAction<{ token: string; refreshToken: string }>,
-    ) {
+    singInAction: (_state, action: PayloadAction<SignInCredential>) => {
+      action.payload
+    },
+    signInSuccess(state, action: PayloadAction<SignInResponse>) {
       state.signedIn = true
       state.token = action.payload.token
-      state.refreshToken = action.payload.refreshToken
     },
     signOutSuccess(state) {
       state.signedIn = false
       state.token = null
-      state.refreshToken = null
     },
   },
 })
 
-export const { signInSuccess, signOutSuccess } = sessionSlice.actions
+export const sessionAction = sessionSlice.actions
+export const { signOutSuccess } = sessionSlice.actions
 export default sessionSlice.reducer

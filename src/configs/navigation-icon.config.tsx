@@ -3,13 +3,13 @@ import {
   HiOutlineDesktopComputer,
   HiOutlineTemplate,
   HiOutlineViewGridAdd,
-  HiOutlineHome,
+  HiOutlineChartSquareBar,
 } from 'react-icons/hi'
 
 export type NavigationIcons = Record<string, JSX.Element>
 
 const navigationIcon: NavigationIcons = {
-  home: <HiOutlineHome />,
+  project: <HiOutlineChartSquareBar />,
   singleMenu: <HiOutlineViewGridAdd />,
   collapseMenu: <HiOutlineTemplate />,
   groupSingleMenu: <HiOutlineDesktopComputer />,

@@ -1,25 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { SLICE_BASE_NAME } from './constants'
-import { LoginDataResponse } from '@/@types/auth'
+import { Role } from '@/@types/auth'
+import { Employee } from '@/@types/employee'
 
 export type UserState = {
-  avatar?: string
-  userName?: string
   email?: string
-  password?: string
-  isLoading?: boolean
   authority?: string[]
-  role?: number
-  user?: LoginDataResponse
+  role?: string
+  employee?: Employee
 }
 
 const initialState: UserState = {
-  avatar: '',
-  userName: '',
   email: '',
-  isLoading: false,
   authority: [],
-  role: 0,
+  role: Role.EMPLOYEE,
+  employee: undefined,
 }
 
 const userSlice = createSlice({
@@ -27,12 +22,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action: PayloadAction<UserState>) {
-      state.avatar = action.payload?.avatar
-      state.email = action.payload?.email
-      state.userName = action.payload?.userName
-      state.authority = action.payload?.authority
-      state.role = action.payload?.role
-      state.user = action.payload.user
+      state.email = action.payload.email
+      state.authority = action.payload.authority
+      state.role = action.payload.role
+      state.employee = action.payload?.employee
     },
     resetStateUser() {
       return initialState

@@ -43,7 +43,7 @@ const store: CustomStore = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat([sagaMiddleware]),
   devTools: process.env.NODE_ENV === 'development',
 })
 

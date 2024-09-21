@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { SCHEMA_ROLE, SLICE_BASE_NAME } from './constants'
+import { SLICE_BASE_NAME } from './constants'
 import { TypeAttributes } from '@/components/ui/@types/common'
 import { NotificationPlacement } from '@/components/ui/@types/placement'
 
@@ -14,7 +14,6 @@ export interface NotificationAlert {
 
 export type CommonState = {
   currentRouteKey: string
-  roles: SCHEMA_ROLE[]
   loading: boolean
   notification: NotificationAlert
 }
@@ -28,7 +27,6 @@ const defaultMessage = {
 
 export const initialState: CommonState = {
   currentRouteKey: '',
-  roles: [],
   loading: true,
   notification: defaultMessage,
 }
@@ -39,13 +37,6 @@ export const commonSlice = createSlice({
   reducers: {
     setCurrentRouteKey: (state, action: PayloadAction<string>) => {
       state.currentRouteKey = action.payload
-    },
-    getRoles: (state) => {
-      state.loading = true
-    },
-    setRoles: (state, action: PayloadAction<SCHEMA_ROLE[]>) => {
-      state.roles = action.payload
-      state.loading = false
     },
     commonFailed: (state) => {
       state.loading = false
