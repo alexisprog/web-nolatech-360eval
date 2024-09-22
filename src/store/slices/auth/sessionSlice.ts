@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { SLICE_BASE_NAME } from './constants'
-import { SignInCredential, SignInResponse } from '@/@types/auth'
+import { SignInCredential, SignInResponse, SignUpRequest } from '@/@types/auth'
 
 export interface SessionState {
   signedIn: boolean
@@ -22,6 +22,9 @@ const sessionSlice = createSlice({
     signInSuccess(state, action: PayloadAction<SignInResponse>) {
       state.signedIn = true
       state.token = action.payload.token
+    },
+    singUpAction: (_state, action: PayloadAction<SignUpRequest>) => {
+      action.payload
     },
     signOutSuccess(state) {
       state.signedIn = false
