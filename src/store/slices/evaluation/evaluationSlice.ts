@@ -35,7 +35,7 @@ export const evaluationSlice = createSlice({
     },
     setCurrentEvaluationAction: (
       state,
-      action: PayloadAction<EvaluationList>,
+      action: PayloadAction<EvaluationList | undefined>,
     ) => {
       state.currentEvaluation = action.payload
     },

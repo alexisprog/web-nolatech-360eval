@@ -24,13 +24,13 @@ const ItemDropdown = ({ data }: ItemDropdownProps) => {
       label: 'Edit',
       value: 'edit',
       icon: <HiOutlinePencil />,
-      action: handleEdit(),
+      action: () => handleEdit(),
     },
     {
       label: 'Delete',
       value: 'delete',
       icon: <HiOutlineTrash />,
-      action: handleDelete(),
+      action: () => handleDelete(),
     },
   ]
   return (
@@ -38,7 +38,7 @@ const ItemDropdown = ({ data }: ItemDropdownProps) => {
       {dropdownList.map((item) => (
         <Dropdown.Item key={item.value} eventKey={item.value}>
           <span className="text-lg">{item.icon}</span>
-          <span className="ml-2 rtl:mr-2" onClick={handleDelete}>
+          <span className="ml-2 rtl:mr-2" onClick={item.action}>
             {item.label}
           </span>
         </Dropdown.Item>

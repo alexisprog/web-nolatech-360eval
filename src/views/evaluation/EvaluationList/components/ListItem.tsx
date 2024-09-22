@@ -56,7 +56,7 @@ const ListItem = ({ data, cardBorder }: ListItemProps) => {
           </div>
           {!data.is_completed && (
             <div className="my-1 sm:my-0 col-span-12 sm:col-span-1 flex md:items-center justify-end">
-              <ItemDropdown />
+              <ItemDropdown data={data} />
             </div>
           )}
         </div>

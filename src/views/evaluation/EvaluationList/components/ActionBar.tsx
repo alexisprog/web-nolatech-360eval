@@ -6,6 +6,7 @@ import { HiOutlinePlusCircle } from 'react-icons/hi'
 const ActionBar = () => {
   const dispatch = useAppDispatch()
   const onAddNewEvaluation = () => {
+    dispatch(evaluationActions.setCurrentEvaluationAction(undefined))
     dispatch(evaluationActions.toggleModal(true))
   }
 

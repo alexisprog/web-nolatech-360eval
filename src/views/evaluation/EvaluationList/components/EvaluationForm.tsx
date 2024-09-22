@@ -193,7 +193,7 @@ const EvaluationForm = () => {
               ))}
 
             <Button className="mt-5" block variant="solid" type="submit">
-              Create evaluation
+              {`${currentEvaluation?._id ? 'Update' : 'Create'} evaluation`}
             </Button>
           </FormContainer>
         </Form>
