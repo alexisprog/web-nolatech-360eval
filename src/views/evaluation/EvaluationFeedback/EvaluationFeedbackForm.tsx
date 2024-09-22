@@ -11,6 +11,8 @@ import FormRow from './components/FormRow'
 import Select from '@/components/ui/Select'
 import { useCallback, useEffect, useMemo } from 'react'
 import { scaleActions } from '@/store/slices/scale'
+import { evaluationPendingActions } from '@/store/slices/evaluation'
+import { useNavigate } from 'react-router-dom'
 
 type ScaleOption = {
   value: number
@@ -39,11 +41,12 @@ const validationSchema = Yup.object().shape({
 
 const EvaluationFeedbackForm = (props: EvaluationFeedbackFormProps) => {
   const { goBackUrl } = props
-  const currentPending = useAppSelector(
-    (state) => state.evaluation.pending.currentPending,
+  const { currentPending, success } = useAppSelector(
+    (state) => state.evaluation.pending,
   )
   const { scales } = useAppSelector((state) => state.scale)
   const distpatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const scaleOptions: ScaleOption[] = useMemo(() => {
     return scales.map((scale) => {
@@ -59,7 +62,12 @@ const EvaluationFeedbackForm = (props: EvaluationFeedbackFormProps) => {
     setSubmitting: (isSubmitting: boolean) => void,
   ) => {
     setSubmitting(true)
-    console.log({ values })
+    distpatch(
+      evaluationPendingActions.setEvaluationFeedbackAction({
+        evaluation_id: currentPending?._id ?? '',
+        feedbacks: values.feedbacks,
+      }),
+    )
     setSubmitting(false)
   }
 
@@ -70,6 +78,13 @@ const EvaluationFeedbackForm = (props: EvaluationFeedbackFormProps) => {
   useEffect(() => {
     fetchScales()
   }, [])
+
+  useEffect(() => {
+    if (!success) {
+      return
+    }
+    navigate('/app/dashboard')
+  }, [success])
 
   if (!currentPending || scales.length === 0) {
     return null

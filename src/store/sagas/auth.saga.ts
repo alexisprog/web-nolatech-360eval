@@ -2,14 +2,8 @@ import { all, put, takeLatest } from 'redux-saga/effects'
 import { sessionAction } from '../slices/auth/sessionSlice'
 import { onError, safe } from '@/utils/functions-saga'
 import { PayloadAction } from '@reduxjs/toolkit'
-import {
-  ProfileResponse,
-  SignInCredential,
-  SignInResponse,
-  SignUpRequest,
-  SignUpResponse,
-} from '@/@types/auth'
-import { apiGetProfile, apiSignIn, apiSignUp } from '@/services/AuthService'
+import { SignInCredential, SignInResponse, SignUpRequest } from '@/@types/auth'
+import { apiSignIn, apiSignUp } from '@/services/AuthService'
 import { commonActions } from '../slices/base/commonSlice'
 import { userActions } from '../slices/auth'
 
@@ -23,14 +17,12 @@ function* singInSaga(action: PayloadAction<SignInCredential>) {
       message: 'Welcome Evaluation 360',
     }),
   )
-  const { data: dataProfile }: { data: ProfileResponse } = yield apiGetProfile()
-  const { email, role } = dataProfile
   yield put(
     userActions.setUser({
-      email,
-      role: role.toUpperCase(),
-      authority: [role.toUpperCase()],
-      employee: dataProfile?.employee,
+      email: data.user.email,
+      role: data.user.role.toUpperCase(),
+      authority: [data.user.role.toUpperCase()],
+      employee: data.user?.employee,
     }),
   )
 }
@@ -49,14 +41,12 @@ function* singUpSaga(action: PayloadAction<SignUpRequest>) {
       message: 'Welcome Evaluation 360',
     }),
   )
-  const { data: dataProfile }: { data: ProfileResponse } = yield apiGetProfile()
-  const { email, role } = dataProfile
   yield put(
     userActions.setUser({
-      email,
-      role: role.toUpperCase(),
-      authority: [role.toUpperCase()],
-      employee: dataProfile?.employee,
+      email: data.user.email,
+      role: data.user.role.toUpperCase(),
+      authority: [data.user.role.toUpperCase()],
+      employee: data.user?.employee,
     }),
   )
 }

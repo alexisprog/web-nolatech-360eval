@@ -4,7 +4,6 @@ import type {
   SignUpRequest,
   SignInResponse,
   SignUpResponse,
-  ProfileResponse,
 } from '@/@types/auth'
 
 export async function apiSignIn(data: SignInCredential) {
@@ -12,13 +11,6 @@ export async function apiSignIn(data: SignInCredential) {
     url: '/auth/login',
     method: 'post',
     data,
-  })
-}
-
-export async function apiGetProfile() {
-  return ApiService.fetchData<ProfileResponse>({
-    url: '/auth/profile',
-    method: 'get',
   })
 }
 

@@ -1,17 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { SLICE_EVALUATION_NAME } from './constants'
-import { EvaluationPendingsResponse } from '@/@types/evaluation'
+import {
+  EvaluationFeedbackRequest,
+  EvaluationPendingsResponse,
+} from '@/@types/evaluation'
 
 export type EvaluationPendingsState = {
   loading: boolean
   pendings: EvaluationPendingsResponse[]
   currentPending: EvaluationPendingsResponse | undefined
+  success: boolean
 }
 
-export const initialState: EvaluationPendingsState = {
+const initialState: EvaluationPendingsState = {
   loading: false,
   pendings: [],
   currentPending: undefined,
+  success: false,
 }
 
 export const evaluationPendingSlice = createSlice({
@@ -40,6 +45,19 @@ export const evaluationPendingSlice = createSlice({
       action: PayloadAction<EvaluationPendingsResponse>,
     ) => {
       state.currentPending = action.payload
+      state.success = false
+    },
+    setEvaluationFeedbackAction: (
+      state,
+      action: PayloadAction<EvaluationFeedbackRequest>,
+    ) => {
+      state.loading = true
+      state.success = false
+      action.payload
+    },
+    setEvaluationFeedbackActionSuccessAction: (state) => {
+      state.loading = false
+      state.success = true
     },
     resetStateEvaluationPendings() {
       return initialState

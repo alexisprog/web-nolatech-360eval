@@ -16,21 +16,22 @@ export type SignUpRequest = {
 
 export type SignInResponse = {
   token: string
+  user: User
 }
 
 export type SignUpResponse = {
   email: string
 }
 
-export type ProfileResponse = {
-  _id: string
-  email: string
-  role: string
-  employee: Employee
-}
-
 export enum Role {
   ADMIN = 'admin',
   MANAGER = 'manager',
   EMPLOYEE = 'employee',
+}
+
+export interface User {
+  _id: string
+  email: string
+  role: string
+  employee: Employee
 }

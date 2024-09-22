@@ -22,13 +22,11 @@ type DropdownList = {
 const dropdownItemList: DropdownList[] = []
 
 const _UserDropdown = ({ className }: CommonProps) => {
-  const { email, employee } = useAppSelector((state) => state.auth.user)
+  const { email, employee, role } = useAppSelector((state) => state.auth.user)
   const dispatch = useAppDispatch()
 
   const name = useMemo(() => {
-    return !employee
-      ? 'admin'
-      : `${employee?.first_name} ${employee?.last_name}`
+    return !employee ? role : `${employee?.first_name} ${employee?.last_name}`
   }, [employee])
 
   const signOut = () => {

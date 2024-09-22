@@ -6,6 +6,10 @@ import theme, { ThemeState } from './slices/theme/themeSlice'
 import { select } from 'redux-saga/effects'
 import evaluation, { EvaluationState } from './slices/evaluation'
 import scale, { ScaleState } from './slices/scale/scaleSlice'
+import employee, { EmployeeState } from './slices/employee/employeeSlice'
+import competency, {
+  CompetencyState,
+} from './slices/competency/competencySlice'
 
 export type RootState = CombinedState<{
   auth: CombinedState<AuthState>
@@ -14,6 +18,8 @@ export type RootState = CombinedState<{
   theme: ThemeState
   evaluation: CombinedState<EvaluationState>
   scale: ScaleState
+  employee: EmployeeState
+  competency: CompetencyState
 }>
 
 export interface AsyncReducers {
@@ -27,6 +33,8 @@ const staticReducers = {
   theme,
   evaluation,
   scale,
+  employee,
+  competency,
 }
 
 const rootReducer =
