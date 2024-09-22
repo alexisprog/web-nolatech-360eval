@@ -10,6 +10,12 @@ const appsRoute: Routes = [
     component: lazy(() => import('@/views/Home')),
     authority: [ADMIN, EMPLOYEE, MANAGER],
   },
+  {
+    key: 'apps.evaluation.feedback',
+    path: `${APP_PREFIX_PATH}/evaluation/feedback`,
+    component: lazy(() => import('@/views/evaluation/EvaluationFeedback')),
+    authority: [EMPLOYEE],
+  },
 ]
 
 export default appsRoute

@@ -5,11 +5,13 @@ import { EvaluationPendingsResponse } from '@/@types/evaluation'
 export type EvaluationPendingsState = {
   loading: boolean
   pendings: EvaluationPendingsResponse[]
+  currentPending: EvaluationPendingsResponse | undefined
 }
 
 export const initialState: EvaluationPendingsState = {
   loading: false,
   pendings: [],
+  currentPending: undefined,
 }
 
 export const evaluationPendingSlice = createSlice({
@@ -32,6 +34,12 @@ export const evaluationPendingSlice = createSlice({
     },
     setFailedAction: (state) => {
       state.loading = false
+    },
+    setCurrentPendingAction: (
+      state,
+      action: PayloadAction<EvaluationPendingsResponse>,
+    ) => {
+      state.currentPending = action.payload
     },
     resetStateEvaluationPendings() {
       return initialState

@@ -5,6 +5,7 @@ import locale, { LocaleState } from './slices/locale/localeSlice'
 import theme, { ThemeState } from './slices/theme/themeSlice'
 import { select } from 'redux-saga/effects'
 import evaluation, { EvaluationState } from './slices/evaluation'
+import scale, { ScaleState } from './slices/scale/scaleSlice'
 
 export type RootState = CombinedState<{
   auth: CombinedState<AuthState>
@@ -12,6 +13,7 @@ export type RootState = CombinedState<{
   locale: LocaleState
   theme: ThemeState
   evaluation: CombinedState<EvaluationState>
+  scale: ScaleState
 }>
 
 export interface AsyncReducers {
@@ -24,6 +26,7 @@ const staticReducers = {
   locale,
   theme,
   evaluation,
+  scale,
 }
 
 const rootReducer =

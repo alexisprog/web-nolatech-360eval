@@ -10,6 +10,7 @@ interface CardEvaluationProps {
   hierarchy: string
   position: string
   updatedAt: string
+  onClick: () => void
 }
 
 const CardEvaluation = ({
@@ -18,13 +19,14 @@ const CardEvaluation = ({
   hierarchy,
   position,
   updatedAt,
+  onClick,
 }: CardEvaluationProps) => {
   return (
     <div className="max-w-xs">
       <Card
         clickable
         className="hover:shadow-lg transition duration-150 ease-in-out"
-        onClick={(e) => console.log('Card Clickable', e)}
+        onClick={onClick}
       >
         <div className={'flex items-center gap-2 mb-5'}>
           <Avatar size={32} shape="circle" icon={<HiOutlineUser />} />
