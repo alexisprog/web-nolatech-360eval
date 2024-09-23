@@ -42,22 +42,20 @@ const DashEmployee = () => {
           title="Evaluation 360"
           subtitle="Here you will find the evaluations that you have pending to carry out"
         />
-        <div className="flex flex-col xl:flex-row gap-4 mt-5">
-          <div className="flex flex-col gap-4 flex-auto">
-            {pendings.map((pending, index) => {
-              return (
-                <CardEvaluation
-                  key={index}
-                  name={`${pending.employee.first_name} ${pending.employee.last_name}`}
-                  dni={pending.employee.dni}
-                  hierarchy={pending.hierarchy}
-                  position={pending.employee.position}
-                  updatedAt={pending.updatedAt}
-                  onClick={() => onHandleFeedback(pending)}
-                />
-              )
-            })}
-          </div>
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-5">
+          {pendings.map((pending, index) => {
+            return (
+              <CardEvaluation
+                key={index}
+                name={`${pending.employee.first_name} ${pending.employee.last_name}`}
+                dni={pending.employee.dni}
+                hierarchy={pending.hierarchy}
+                position={pending.employee.position}
+                updatedAt={pending.updatedAt}
+                onClick={() => onHandleFeedback(pending)}
+              />
+            )
+          })}
         </div>
       </Loading>
     </div>

@@ -7,6 +7,8 @@ import { useMemo } from 'react'
 import EvaluatedBy from './EvaluatedBy'
 import Employee from './Employee'
 import Tag from '@/components/ui/Tag'
+import { useAppDispatch } from '@/store'
+import { evaluationActions } from '@/store/slices/evaluation'
 
 type ListItemProps = {
   data: EvaluationList
@@ -14,6 +16,7 @@ type ListItemProps = {
 }
 
 const ListItem = ({ data, cardBorder }: ListItemProps) => {
+  const dispatch = useAppDispatch()
   const total = useMemo(() => {
     return data.competencies.length * 5
   }, [data._id])
@@ -26,12 +29,16 @@ const ListItem = ({ data, cardBorder }: ListItemProps) => {
     return Number(((points * 100) / total).toFixed(1))
   }, [total, points])
 
+  const handleCurrent = () => {
+    dispatch(evaluationActions.setCurrentEvaluationAction(data))
+  }
+
   return (
     <div className="mb-4">
       <Card bordered={cardBorder}>
         <div className="grid gap-x-4 grid-cols-12">
           <div className="my-1 sm:my-0 col-span-12 sm:col-span-2 md:col-span-2 lg:col-span-2 md:flex md:items-center">
-            <Employee data={data.employee} />
+            <Employee data={data.employee} handleCurrent={handleCurrent} />
           </div>
           <div className="my-1 sm:my-0 col-span-12 sm:col-span-2 md:col-span-2 lg:col-span-2 md:flex md:items-center md:justify-end">
             <div className="inline-flex items-center px-2 py-1 border border-gray-300 rounded-full">

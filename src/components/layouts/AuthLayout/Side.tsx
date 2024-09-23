@@ -23,7 +23,7 @@ const Side = ({ children, content, ...rest }: SideProps) => {
             <Avatar
               className="border-2 border-white"
               shape="circle"
-              src="/img/avatars/santy.jpeg"
+              src="/img/profile.jpeg"
             />
             <div className="text-white">
               <div className="font-semibold text-base">Ing. Alexis Sánchez</div>

@@ -1,5 +1,5 @@
 import ActionBar from './components/ActionBar'
-import ProjectListContent from './components/ProjectListContent'
+import EvaluationListContent from './components/EvaluationListContent'
 import NewEvaluationModal from './components/NewEvaluationModal'
 import Container from '@/components/shared/Container'
 
@@ -7,7 +7,7 @@ const EvaluationList = () => {
   return (
     <Container className="h-full">
       <ActionBar />
-      <ProjectListContent />
+      <EvaluationListContent />
       <NewEvaluationModal />
     </Container>
   )
